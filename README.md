@@ -1,7 +1,5 @@
 # 통신사 고객 이탈 예측 (SMOTE-ENN + CatBoost + SHAP)
 
-> 표의 `-`는 재실행 결과 반영 예정
-
 IBM Telco 고객 데이터로 이탈 고객을 예측하고, SHAP으로 이탈 요인을 해석해 고객 유지 전략 제안
 
 | 항목 | 내용 |
@@ -55,8 +53,15 @@ IBM Telco 고객 데이터로 이탈 고객을 예측하고, SHAP으로 이탈 �
 
 ## 4. 변수 선택 (`src/02_feature_selection.py`)
 
-- CatBoost 변수 중요도 하위 4개 제거: Unlimited Data, Device Protection Plan, Internet Service, Phone Service
-- 중요도 낮은 변수부터 하나씩 빼며 F1 비교 → 29개 변수 사용
+| 중요도 하위 4개 | Internet Service | Phone Service | Device Protection Plan | Unlimited Data |
+|---|---|---|---|---|
+| CatBoost 중요도 | 0.000 | 0.000 | 0.271 | 0.513 |
+
+- Internet Service·Phone Service는 중요도 0. 각각 Internet Type('-'이면 미이용), Avg Monthly Long Distance Charges(0이면 미이용)와 정보가 완전히 겹침
+- 하위 4개 제거 후 29개 변수 사용
+- 변수 개수별 F1(재구성)은 0.658~0.675 범위로 차이가 작아, 변수를 줄여도 성능 손실 거의 없음
+
+<img src="results/02_feature_selection/f1_by_n_features.png" width="420">
 
 ## 5. 불균형 처리 (`src/03_sampling.py`)
 
@@ -64,23 +69,27 @@ RF 기준, 학습 데이터 3-fold CV (샘플링은 학습 폴드에만 적용)
 
 | 방법 | Accuracy | F1 | Recall | ROC-AUC |
 |---|---|---|---|---|
-| 원본 | - | - | - | - |
-| SMOTE | - | - | - | - |
-| **SMOTE-ENN** | - | - | - | - |
+| 원본 | 0.8408 | 0.6622 | 0.5886 | 0.8929 |
+| SMOTE | 0.8362 | 0.6802 | 0.6562 | 0.8905 |
+| **SMOTE-ENN** | 0.7978 | 0.6693 | **0.7706** | 0.8672 |
 
-F1은 비슷하지만 Recall이 크게 높아 SMOTE-ENN 채택 (대회 당시 33개 변수 기준 Recall 0.771 vs SMOTE 0.652). 최종 설정: SMOTE(sampling_strategy=0.7, k=3) + ENN(k=3)
+F1은 비슷하지만 Recall이 크게 높아(0.589 → 0.771) SMOTE-ENN 채택. 학습 데이터 클래스 비율 4,139 : 1,495 → 2,877 : 2,897
+
+최종 설정: SMOTE(sampling_strategy=0.7, k=3) + ENN(k=3)
 
 ## 6. 모델링 (`src/04_models.py`, `src/05_grid_search.py`)
 
 | 모델 | Accuracy | F1 | Recall | ROC-AUC |
 |---|---|---|---|---|
-| Random Forest | - | - | - | - |
-| Double Random Forest | - | - | - | - |
-| XGBoost | - | - | - | - |
-| CatBoost | - | - | - | - |
-| **CatBoost (튜닝)** | **0.8318** | **0.7182** | **0.8075** | **0.9091** |
+| Random Forest | 0.8190 | 0.6931 | 0.7701 | 0.8872 |
+| Double Random Forest | 0.8070 | 0.6895 | 0.8075 | 0.8892 |
+| XGBoost | 0.8141 | 0.6881 | 0.7727 | 0.8935 |
+| CatBoost (기본값) | 0.8353 | 0.7225 | 0.8075 | 0.9126 |
+| CatBoost (튜닝, 최종) | 0.8318 | 0.7182 | 0.8075 | 0.9091 |
 
-- 최종 파라미터: depth=8, iterations=800, l2_leaf_reg=3, learning_rate=0.03
+- CatBoost가 RF·DRF·XGBoost보다 F1·AUC 모두 높음 → 최종 모델
+- 튜닝 파라미터: depth=8, iterations=800, l2_leaf_reg=3, learning_rate=0.03
+- 평가 데이터에서는 기본값과 튜닝 모델의 차이가 거의 없음 (F1 0.004, 단일 분할이라 우연 범위)
 - 대회 제출 당시 수치(F1 0.7271)는 하위 4개 변수를 제거하기 전 33개 변수 실행 결과 (`archive/` 참고)
 
 ## 7. SHAP 해석 (`src/06_shap.py`)
@@ -101,9 +110,13 @@ F1은 비슷하지만 Recall이 크게 높아 SMOTE-ENN 채택 (대회 당시 33
 
 | 방식 | Accuracy | F1 | Recall | ROC-AUC |
 |---|---|---|---|---|
-| 원-핫 + SMOTE-ENN (대회) | - | - | - | - |
-| SMOTE-NC + CatBoost 범주형 직접 입력 | - | - | - | - |
-| 클래스 가중치 + CatBoost 범주형 직접 입력 | - | - | - | - |
+| 원-핫 + SMOTE-ENN (대회) | 0.8318 | 0.7182 | **0.8075** | 0.9091 |
+| SMOTE-NC + CatBoost 범주형 직접 입력 | 0.8453 | 0.7154 | 0.7326 | 0.9070 |
+| **클래스 가중치 + CatBoost 범주형 직접 입력** | **0.8474** | **0.7349** | 0.7968 | **0.9122** |
+
+- 합성 데이터 없이 클래스 가중치만 준 방식이 F1·AUC 가장 높고 Recall도 비슷
+- SMOTE-NC는 Accuracy는 올랐지만 Recall 하락
+- SMOTE-NC는 ENN 없이 적용 (ENN이 문자형 범주 간 거리를 계산하지 못함)
 
 ## 한계
 

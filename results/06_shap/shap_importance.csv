@@ -1,0 +1,110 @@
+,mean_abs_shap,direction
+Number of Referrals,0.7788,-0.9511
+Contract_Month-to-Month,0.5834,0.9574
+Number of Dependents,0.5515,-0.8909
+Tenure in Months,0.4681,-0.9188
+Contract_Two Year,0.4555,-0.9822
+Payment Method_Credit Card,0.3704,-0.9796
+Monthly Charge,0.3198,0.9457
+Paperless Billing_No,0.3066,-0.9753
+Married_No,0.3004,-0.8814
+Total Long Distance Charges,0.2349,-0.6927
+Premium Tech Support_Yes,0.226,-0.9722
+Total Revenue,0.2214,-0.764
+Streaming TV_No,0.2139,-0.9827
+Avg Monthly GB Download,0.2007,0.3197
+Online Security_Yes,0.1843,-0.9561
+Population,0.1837,0.7335
+Online Backup_Yes,0.1627,-0.9697
+Gender_Female,0.1607,-0.9848
+Internet Type_DSL,0.1563,-0.9541
+Age,0.1559,0.6872
+Gender_Male,0.147,-0.9768
+Total Charges,0.1448,-0.8503
+Streaming Movies_No,0.1353,-0.8688
+Multiple Lines_No,0.1338,-0.9762
+Contract_One Year,0.1301,-0.9595
+Internet Type_-,0.1257,-0.991
+CLTV,0.1222,-0.5822
+Streaming Music_No,0.1189,-0.9427
+Paperless Billing_Yes,0.0923,-0.8827
+Married_Yes,0.087,-0.9651
+Offer_-,0.0813,-0.9132
+Online Security_No,0.0791,-0.5711
+Streaming Music_Yes,0.0748,-0.8158
+Avg Monthly Long Distance Charges,0.0706,-0.0333
+Premium Tech Support_No,0.0669,-0.969
+Payment Method_Bank Withdrawal,0.0561,-0.798
+Online Backup_No,0.0514,-0.9494
+Multiple Lines_Yes,0.0504,-0.9401
+County_San Diego,0.0412,0.8292
+Offer_Offer D,0.0411,-0.9043
+Offer_Offer B,0.0376,-0.8877
+Streaming Movies_Yes,0.0344,-0.7632
+Total Extra Data Charges,0.0336,0.8474
+County_San Bernardino,0.0238,-0.8738
+County_Los Angeles,0.0236,-0.46
+County_Orange,0.0219,-0.8419
+Streaming TV_Yes,0.0193,-0.9056
+Internet Type_Cable,0.0182,-0.775
+Total Refunds,0.0164,-0.4207
+County_Riverside,0.0164,-0.6904
+County_Kern,0.0146,-0.9327
+Offer_Offer C,0.0114,-0.9265
+Internet Type_Fiber Optic,0.011,0.5292
+Offer_Offer E,0.0097,-0.2595
+Payment Method_Mailed Check,0.008,-0.739
+County_Sacramento,0.0066,0.6785
+County_Santa Clara,0.0051,-0.7377
+County_Calaveras,0.005,-0.6116
+County_San Joaquin,0.0048,-0.9098
+County_Alameda,0.0047,0.4008
+County_Fresno,0.0047,-0.5385
+County_Mendocino,0.0047,-0.9504
+County_Monterey,0.0046,-0.8719
+County_Yuba,0.0046,0.9823
+County_Modoc,0.0046,-0.9301
+County_Ventura,0.0044,-0.8988
+County_Siskiyou,0.0042,-0.8911
+County_Mariposa,0.0039,-0.9666
+County_Merced,0.0039,-0.8776
+County_Solano,0.0037,-0.9689
+County_Contra Costa,0.0036,0.6741
+County_Mono,0.0031,-0.9954
+County_Napa,0.0028,0.911
+County_Sierra,0.0026,-0.8861
+County_Madera,0.0024,-0.9678
+Offer_Offer A,0.0022,-0.2529
+County_Placer,0.0022,-0.8572
+County_San Luis Obispo,0.0022,-0.5478
+County_Trinity,0.0021,0.9522
+County_Stanislaus,0.002,-0.0559
+County_Sonoma,0.0019,-0.5051
+County_El Dorado,0.0019,0.5737
+County_Del Norte,0.0018,0.9995
+County_Imperial,0.0017,-0.1152
+County_Santa Barbara,0.0017,-0.0877
+County_Plumas,0.0015,0.899
+County_Yolo,0.0014,0.2928
+County_Butte,0.0014,-0.7769
+County_City and County of San Francisco,0.0013,0.0913
+County_Humboldt,0.0012,-0.1128
+County_Tulare,0.0011,-0.6118
+County_San Mateo,0.0009,0.3438
+County_Santa Cruz,0.0008,-0.0882
+County_Marin,0.0007,-0.1796
+County_Nevada,0.0006,-0.9806
+County_Tuolumne,0.0006,0.9366
+County_Sutter,0.0006,0.4466
+County_Tehama,0.0005,0.0719
+County_Colusa,0.0005,-0.8589
+County_Lake,0.0004,-0.3478
+County_Lassen,0.0003,-0.7708
+County_Glenn,0.0003,-0.9601
+County_Amador,0.0001,-0.5798
+County_Kings,0.0001,0.6045
+County_Alpine,0.0,0.0
+County_Inyo,0.0,
+County_Calaveras County,0.0,
+County_San Benito,0.0,
+County_Shasta,0.0,

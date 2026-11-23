@@ -1,0 +1,4 @@
+Method,Accuracy,F1,Recall,ROC-AUC
+원-핫 + SMOTE-ENN (대회),0.8318,0.7182,0.8075,0.9091
+SMOTE-NC + CatBoost 범주형,0.8453,0.7154,0.7326,0.907
+클래스 가중치 + CatBoost 범주형,0.8474,0.7349,0.7968,0.9122
