@@ -1,0 +1,11 @@
+# Python 3.10 이상 (Colab 기준 3.12에서 실행)
+pandas
+numpy
+scikit-learn
+imbalanced-learn
+xgboost
+catboost==1.2.8
+shap
+pgeocode
+matplotlib
+pytest

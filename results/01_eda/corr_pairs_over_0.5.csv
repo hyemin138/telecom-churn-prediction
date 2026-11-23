@@ -1,0 +1,11 @@
+var1,var2,r
+Total Charges,Total Revenue,0.972
+Latitude,Longitude,-0.886
+Tenure in Months,Total Revenue,0.853
+Tenure in Months,Total Charges,0.826
+Total Long Distance Charges,Total Revenue,0.779
+Tenure in Months,Total Long Distance Charges,0.674
+Monthly Charge,Total Charges,0.651
+Total Charges,Total Long Distance Charges,0.61
+Avg Monthly Long Distance Charges,Total Long Distance Charges,0.6
+Monthly Charge,Total Revenue,0.589
