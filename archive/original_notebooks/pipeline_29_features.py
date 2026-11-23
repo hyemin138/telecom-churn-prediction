@@ -1,4 +1,4 @@
-# Colab 원본 "통계자료분석 전처리 & eda" (참고용)
+# 하위 4개 변수 제거 버전 (참고용, 정리본은 src/)
 # 29개 변수(하위 4개 제거) 버전, 출력: CatBoost 0.8318 / F1 0.7182 / Recall 0.8075 / AUC 0.9091
 
 import numpy as np
@@ -45,7 +45,7 @@ cols = ['Customer ID', 'Under 30', 'Senior Citizen',
 # 'Country', 'State', 'Quarter' → 상수형 변수
 # 'Latitude', 'Longitude', 'Zip Code', 'City' → 고유값이 너무 큼 → 고차원 문제 발생
 # 'City' 상위 범주인 'County'로 파생변수 활용
-#'Unlimited Data','Device Protection Plan','Internet Service','Phone Service' → 피처중요도 하위 4개 삭제
+# 'Unlimited Data','Device Protection Plan','Internet Service','Phone Service' → 피처중요도 하위 4개 삭제
 telco = telco.drop(columns=cols)
 telco.info()
 
@@ -120,7 +120,7 @@ import shap
 explainer = shap.TreeExplainer(cat)
 shap_values = explainer.shap_values(X_test)
 
-i = 777 # 본인이 원하는 데이터(행) 넘버 적으면 됨!!
+i = 777  # 개별 고객 예시
 shap.initjs()
 shap.force_plot(
     explainer.expected_value,

@@ -97,7 +97,7 @@ class DoubleRandomForest:
 
             Xb, yb = resample(X, y)
 
-            # 2 노드별 부트스트랩 반영할 결정트리 생성
+            # 결정트리 생성
             tree = DecisionTreeClassifier(
                 max_features=self.max_features,
                 max_depth=self.max_depth,
@@ -249,7 +249,7 @@ import shap
 explainer = shap.TreeExplainer(cat)
 shap_values = explainer.shap_values(X_test)
 
-i = 777 # 본인이 원하는 데이터(행) 넘버 적으면 됨!!
+i = 777  # 개별 고객 예시
 shap.initjs()
 shap.force_plot(
     explainer.expected_value,
